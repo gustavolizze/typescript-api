@@ -1,0 +1,30 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch API Built",
+      "program": "${workspaceFolder}/src/bootstrap.ts",
+      "preLaunchTask": "build api",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "env": {
+        "EXT_NAME": "js"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch With TS-NODE",
+      "runtimeArgs": ["-r", "ts-node/register"],
+      "args": ["${workspaceFolder}/src/bootstrap.ts"],
+      "env": {
+        "TS_NODE_PRETTY": "true",
+        "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.json"
+      }
+    }
+  ]
+}

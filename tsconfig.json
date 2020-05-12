@@ -1,16 +1,22 @@
 {
   "compilerOptions": {
     "baseUrl": "./",
-    "paths": {},
+    "paths": {
+      "@environment": ["./src/environment/index"],
+      "@environment/*": ["./src/environment/*"]
+    },
     "module": "commonjs",
     "declaration": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "allowUnusedLabels": false,
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "noImplicitThis": false,
+    "resolveJsonModule": true,
     "allowUnreachableCode": false,
     "pretty": true,
     "strict": true,
-    "importsNotUsedAsValues": "error",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
