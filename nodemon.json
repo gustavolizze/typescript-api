@@ -2,6 +2,6 @@
   "verbose": true,
   "ignore": [".git", "node_modules", ".vscode"],
   "watch": ["src"],
-  "exec": "npm start",
+  "exec": "npm run start:typescript",
   "ext": "ts,js,json"
 }

@@ -7,9 +7,9 @@
     "prebuild": "rimraf build",
     "build": "tsc",
     "prestart": "npm run build",
-    "start": "node build/bootstrap",
+    "start": "NODE_PATH=./build node build/bootstrap",
     "start:watch": "nodemon",
-    "start:typescript": "ts-node --pretty --project 'tsconfig.json' src/bootstrap.ts",
+    "start:typescript": "NODE_PATH=./src ts-node --pretty --project 'tsconfig.json' src/bootstrap",
     "test": "jest --watch",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json -c tslint.json",
@@ -52,7 +52,6 @@
   },
   "dependencies": {
     "lodash": "^4.17.15",
-    "module-alias": "^2.2.2",
     "reflect-metadata": "^0.1.13"
   }
 }
