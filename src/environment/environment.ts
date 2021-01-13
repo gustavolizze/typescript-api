@@ -20,5 +20,7 @@ const Environments: AllEnvironments = {
 
 export const Environment = merge(
   Environments.all,
-  Environments[DefaultEnvironment] as UniqueEnvironment,
+  Environments[
+    DefaultEnvironment as keyof AllEnvironments
+  ] as UniqueEnvironment,
 );
