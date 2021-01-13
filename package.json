@@ -10,6 +10,7 @@
     "start": "NODE_PATH=./build node build/bootstrap",
     "start:watch": "nodemon",
     "start:typescript": "NODE_PATH=./src ts-node --pretty --project 'tsconfig.json' src/bootstrap",
+    "debug": "NODE_PATH=./src nodemon --inspect src/bootstrap.ts",
     "test": "jest --watch",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json -c tslint.json",
@@ -61,6 +62,7 @@
   "dependencies": {
     "@typegoose/typegoose": "^7.4.7",
     "class-validator": "^0.13.0",
+    "fast-glob": "^3.2.4",
     "fastify": "^3.9.2",
     "fastify-compress": "^3.4.1",
     "fastify-cors": "^5.1.0",

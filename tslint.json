@@ -6,6 +6,9 @@
   },
   "rules": {
     "no-namespace": false,
+    "no-duplicate-string": false,
+    "no-hardcoded-credentials": false,
+    "only-arrow-functions": false,
     "max-classes-per-file": false,
     "quotemark": [true, "single"],
     "member-access": [false],

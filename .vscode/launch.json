@@ -10,21 +10,23 @@
       "name": "Launch API Built",
       "program": "${workspaceFolder}/src/bootstrap.ts",
       "preLaunchTask": "build api",
-      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "outFiles": ["${workspaceFolder}/build/**/*.js"],
       "env": {
-        "EXT_NAME": "js"
+        "EXT_NAME": "js",
+        "NODE_PATH": "./build"
       }
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch With TS-NODE",
-      "runtimeArgs": ["-r", "ts-node/register"],
-      "args": ["${workspaceFolder}/src/bootstrap.ts"],
-      "env": {
-        "TS_NODE_PRETTY": "true",
-        "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.json"
-      }
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "smartStep": true,
+      "restart": true,
+      "sourceMaps": true,
+      "runtimeExecutable": "npm",
+      "name": "Launch With Nodemon",
+      "runtimeArgs": ["run", "debug"]
     }
   ]
 }

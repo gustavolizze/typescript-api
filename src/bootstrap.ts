@@ -1,7 +1,5 @@
 import { Environment } from 'environment';
-import { startApi } from './start-api';
+import { main } from './main';
 import throng from 'throng';
 
-throng(
-  Environment.isDev ? { start: startApi, workers: 1 } : { start: startApi },
-);
+throng(Environment.isDev ? { start: main, workers: 1 } : { start: main });

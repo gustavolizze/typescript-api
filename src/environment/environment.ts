@@ -10,15 +10,36 @@ const Environments: AllEnvironments = {
   },
   dev: {
     name: 'Development',
-    endpointTimeout: 30 * 60 * 1000, // 30 Minutos
+    endpointTimeout: 30 * 60 * 1000, // 30 Minutos,
+    mongo: {
+      dbName: 'db-dev',
+      url:
+        'mongodb+srv://dasalab.wgn6j.mongodb.net?retryWrites=true&w=majority',
+      user: 'root',
+      password: 'CP9R83TCim0UbHw8',
+    },
   },
   staging: {
     name: 'Staging',
     endpointTimeout: 5 * 60 * 1000, // 5 Minutos
+    mongo: {
+      dbName: 'db-staging',
+      url:
+        'mongodb+srv://dasalab.wgn6j.mongodb.net?retryWrites=true&w=majority',
+      user: 'root',
+      password: 'CP9R83TCim0UbHw8',
+    },
   },
   production: {
     name: 'Production',
-    endpointTimeout: 5 * 60 * 1000, // 5 Minutos
+    endpointTimeout: 5 * 60 * 1000, // 5 Minutos,
+    mongo: {
+      dbName: 'db-prod',
+      url:
+        'mongodb+srv://dasalab.wgn6j.mongodb.net?retryWrites=true&w=majority',
+      user: 'root',
+      password: 'CP9R83TCim0UbHw8',
+    },
   },
 };
 

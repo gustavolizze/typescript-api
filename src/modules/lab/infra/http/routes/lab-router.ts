@@ -3,6 +3,8 @@ import { createLabController } from 'modules/lab/use-cases';
 
 const RouteName = '/lab';
 
-export const labRouter: FastifyPluginAsync = async (fastify) => {
+const labRouter: FastifyPluginAsync = async (fastify) => {
   fastify.post(RouteName, createLabController.execute);
 };
+
+export default labRouter;
