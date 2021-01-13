@@ -6,4 +6,10 @@ export namespace LabErrors {
       super(`O laboratório: "${name}" já existe!`);
     }
   }
+
+  export class LabNotFound extends AppError<string> {
+    constructor() {
+      super(`O laboratório informado não existe!`);
+    }
+  }
 }

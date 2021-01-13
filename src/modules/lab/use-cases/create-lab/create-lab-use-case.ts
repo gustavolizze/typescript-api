@@ -24,7 +24,7 @@ export class CreateLabUseCase implements UseCase<CreateLabDto, Response> {
 
     const labName = labNameOrError.value;
     const labAddress = labAddressOrError.value;
-    const labExists = await this.labRepository.exists(labName.value);
+    const labExists = await this.labRepository.existsByName(labName.value);
 
     if (labExists) {
       return ResultFactory.fail(new LabErrors.LabAlreadyExists(labName.value));

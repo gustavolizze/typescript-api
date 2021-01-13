@@ -10,7 +10,7 @@ let useCase: CreateLabUseCase;
 describe('CreateLabUseCase Class', () => {
   beforeEach(() => {
     repositoryMock = new Mock<LabRepository>()
-      .setup((instance) => instance.exists('Repetido'))
+      .setup((instance) => instance.existsByName('Repetido'))
       .returns(Promise.resolve(true))
       .setup((instance) => instance.create())
       .returns(Promise.resolve());

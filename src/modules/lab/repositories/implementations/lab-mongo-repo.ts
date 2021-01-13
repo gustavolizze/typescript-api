@@ -8,14 +8,24 @@ import { LabDto } from 'modules/lab/dto';
 export class LabMongoRepo implements LabRepository {
   constructor(private readonly labModel: ReturnModelType<typeof LabSchema>) {}
 
+  delete(id: string): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+
   async create(input?: Lab): Promise<void> {
     const toPersist = LabMap.fromDomainToPersist(input);
     await new this.labModel(toPersist).save();
   }
 
-  exists(labName: string): Promise<boolean> {
+  existsByName(labName: string): Promise<boolean> {
     return this.labModel.exists({
       name: new RegExp(labName, 'i'),
+    });
+  }
+
+  existsById(id: string): Promise<boolean> {
+    return this.labModel.exists({
+      _id: id,
     });
   }
 
