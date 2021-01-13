@@ -35,6 +35,7 @@
     "@types/module-alias": "^2.0.0",
     "@types/mongoose": "5.10.2",
     "@types/node": "^13.13.5",
+    "@types/pino": "^6.3.5",
     "@types/reflect-metadata": "^0.1.0",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
@@ -43,6 +44,7 @@
     "mockingoose": "^2.13.2",
     "moq.ts": "^7.0.0",
     "nodemon": "^2.0.3",
+    "pino-pretty": "^4.3.0",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
     "rimraf": "^3.0.2",
@@ -59,6 +61,7 @@
     "fastify": "^3.9.2",
     "lodash": "^4.17.19",
     "mongoose": "5.10.18",
+    "pino": "^6.10.0",
     "reflect-metadata": "^0.1.13"
   }
 }
