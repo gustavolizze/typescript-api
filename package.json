@@ -37,6 +37,8 @@
     "@types/node": "^13.13.5",
     "@types/pino": "^6.3.5",
     "@types/reflect-metadata": "^0.1.0",
+    "@types/source-map-support": "^0.5.3",
+    "@types/throng": "^5.0.0",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
     "jest-extended": "^0.11.5",
@@ -48,6 +50,7 @@
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
     "rimraf": "^3.0.2",
+    "source-map-support": "^0.5.19",
     "ts-jest": "^25.5.1",
     "ts-node": "^8.10.1",
     "tslint": "^6.1.2",
@@ -59,9 +62,14 @@
     "@typegoose/typegoose": "^7.4.7",
     "class-validator": "^0.13.0",
     "fastify": "^3.9.2",
+    "fastify-compress": "^3.4.1",
+    "fastify-cors": "^5.1.0",
+    "fastify-helmet": "^5.1.0",
     "lodash": "^4.17.19",
+    "make-promises-safe": "^5.1.0",
     "mongoose": "5.10.18",
     "pino": "^6.10.0",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "throng": "^5.0.0"
   }
 }

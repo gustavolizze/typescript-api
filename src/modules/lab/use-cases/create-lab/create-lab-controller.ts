@@ -4,7 +4,11 @@ import { CreateLabUseCase } from './create-lab-use-case';
 import { ValidationError } from 'common/errors';
 import { LabErrors } from 'modules/lab/errors';
 
-export class CreateLabController extends BaseController<CreateLabUseCase> {
+export class CreateLabController extends BaseController {
+  constructor(private readonly useCase: CreateLabUseCase) {
+    super();
+  }
+
   protected async implementation(
     request: FastifyRequest<{ Body?: any }>,
     reply: FastifyReply,

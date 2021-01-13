@@ -1,5 +1,7 @@
-import { Environment } from '@environment';
-import 'reflect-metadata';
+import { Environment } from 'environment';
+import { startApi } from './start-api';
+import throng from 'throng';
 
-// tslint:disable-next-line: no-console
-console.info(`App start on: ${Environment.name}.`);
+throng(
+  Environment.isDev ? { start: startApi, workers: 1 } : { start: startApi },
+);
