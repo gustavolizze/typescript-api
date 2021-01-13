@@ -1,19 +1,22 @@
-import { ValidationError } from 'common/errors';
+import { ValidationError } from 'class-validator';
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { BaseController } from 'infra/http/models';
 import { LabErrors } from 'modules/lab/errors';
-import { RemoveLabUseCase } from './remove-lab-use-case';
+import { UpdateLabUseCase } from './update-lab-use-case';
 
-export class RemoveLabController extends BaseController {
-  constructor(private readonly useCase: RemoveLabUseCase) {
+export class UpdateLabController extends BaseController {
+  constructor(private readonly useCase: UpdateLabUseCase) {
     super();
   }
 
   protected async implementation(
-    request: FastifyRequest<{ Params: { id: string } }>,
+    request: FastifyRequest<{ Params: { id: string }; Body: any }>,
     reply: FastifyReply,
   ): Promise<void> {
-    const result = await this.useCase.execute(request.params);
+    const result = await this.useCase.execute({
+      ...request.params,
+      ...request.body,
+    });
 
     if (result.isSuccess()) {
       return this.noContent(reply);

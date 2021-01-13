@@ -1,11 +1,12 @@
 import { UseCase, ResultFactory, Result } from 'common/core';
 import { ValidationError } from 'common/errors';
 import { LabDto } from 'modules/lab/dto';
-import { Lab, LabAddress, LabName, LabStatusEnum } from 'modules/lab/domain';
+import { Lab, LabAddress, LabName } from 'modules/lab/domain';
 import { CreateLabDto } from './create-lab-dto';
 import { LabRepository } from 'modules/lab/repositories';
 import { LabErrors } from 'modules/lab/errors';
 import { LabMap } from 'modules/lab/mappers';
+import { EntityStatus } from 'common/domain';
 
 type Response = Result<ValidationError | LabErrors.LabAlreadyExists, LabDto>;
 
@@ -33,7 +34,7 @@ export class CreateLabUseCase implements UseCase<CreateLabDto, Response> {
     const lab = Lab.create({
       name: labName,
       address: labAddress,
-      status: LabStatusEnum.Active,
+      status: EntityStatus.active(),
     });
 
     await this.labRepository.create(lab);
