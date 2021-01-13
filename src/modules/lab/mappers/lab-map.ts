@@ -20,4 +20,13 @@ export class LabMap {
       status: input.status,
     };
   }
+
+  public static fromPersistToDto(input: LabSchema): LabDto {
+    return {
+      id: `${input._id}`,
+      address: input.address,
+      name: input.name,
+      status: input.status as any,
+    };
+  }
 }

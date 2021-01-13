@@ -1,8 +1,9 @@
-import { Lab } from 'modules/lab/domain';
+import { Lab, LabStatusEnum } from 'modules/lab/domain';
 import { LabRepository } from '../lab-repository';
 import { LabMap } from 'modules/lab/mappers';
 import { LabSchema } from 'infra/database/mongoose/schemas';
 import { ReturnModelType } from '@typegoose/typegoose';
+import { LabDto } from 'modules/lab/dto';
 
 export class LabMongoRepo implements LabRepository {
   constructor(private readonly labModel: ReturnModelType<typeof LabSchema>) {}
@@ -16,5 +17,17 @@ export class LabMongoRepo implements LabRepository {
     return this.labModel.exists({
       name: new RegExp(labName, 'i'),
     });
+  }
+
+  findActiveLabs(): Promise<LabDto[]> {
+    return this.labModel
+      .find({
+        status: LabStatusEnum.Active,
+      })
+      .lean()
+      .exec()
+      .then((result) =>
+        Array.isArray(result) ? result.map(LabMap.fromPersistToDto) : [],
+      );
   }
 }
