@@ -11,14 +11,13 @@ export class RemoveLabUseCase implements UseCase<RemoveLabDto, Response> {
   constructor(private readonly labRepository: LabRepository) {}
 
   async execute(input?: RemoveLabDto): Promise<Response> {
-    const labId = new UniqueEntityId(input?.id);
+    const labIdOrError = UniqueEntityId.createAndValidate(input?.id);
 
-    if (labId.idIsEqual(input?.id) === false) {
-      return ResultFactory.fail(
-        new ValidationError(['O id informado é inválido!']),
-      );
+    if (labIdOrError.isFailure()) {
+      return ResultFactory.fail(labIdOrError.error);
     }
 
+    const labId = labIdOrError.value;
     const exists = await this.labRepository.existsById(labId.toString());
 
     if (exists === false) {

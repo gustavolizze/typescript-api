@@ -11,12 +11,10 @@ export class RemoveExamUseCase implements UseCase<RemoveExamDto, Response> {
   constructor(private readonly examRepository: ExamRepository) {}
 
   async execute(input?: RemoveExamDto): Promise<Response> {
-    const id = new UniqueEntityId(input?.id);
+    const idOrError = UniqueEntityId.createAndValidate(input?.id);
 
-    if (id.idIsEqual(input?.id) === false) {
-      return ResultFactory.fail(
-        new ValidationError(['O id informado é invalido!']),
-      );
+    if (idOrError.isFailure()) {
+      return ResultFactory.fail(idOrError.error);
     }
 
     const examExists = await this.examRepository.existsById(input.id);
