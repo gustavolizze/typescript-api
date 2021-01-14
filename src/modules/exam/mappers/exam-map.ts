@@ -20,4 +20,13 @@ export class ExamMap {
       type: input.type,
     };
   }
+
+  static fromPersistToDto(input: ExamSchema): ExamDto {
+    return {
+      id: `${input._id}`,
+      name: input.name,
+      status: input.status,
+      type: input.type,
+    };
+  }
 }

@@ -1,4 +1,5 @@
 import { ReturnModelType } from '@typegoose/typegoose';
+import { EntityStatus } from 'common/domain';
 import { ExamSchema } from 'infra/database/mongoose/schemas';
 import { Exam, ExamName } from 'modules/exam/domain';
 import { ExamMap } from 'modules/exam/mappers';
@@ -6,6 +7,15 @@ import { ExamRepository } from '../exam-repository';
 
 export class ExamMongoRepo implements ExamRepository {
   constructor(private readonly examModel: ReturnModelType<typeof ExamSchema>) {}
+
+  getActiveExams(): Promise<ExamSchema[]> {
+    return this.examModel
+      .find({
+        status: EntityStatus.active().value,
+      })
+      .lean()
+      .exec();
+  }
 
   async create(exam: Exam): Promise<void> {
     const examToPersist = ExamMap.fromDomainToPersist(exam);
