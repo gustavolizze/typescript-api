@@ -1,9 +1,11 @@
 import { prop, getModelForClass, modelOptions } from '@typegoose/typegoose';
 import { Types } from 'mongoose';
 
+export const AssociationCollection = 'associations';
+
 @modelOptions({
   options: {
-    customName: 'associations',
+    customName: AssociationCollection,
   },
 })
 export class AssociationSchema {

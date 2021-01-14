@@ -1,9 +1,11 @@
 import { prop, modelOptions, getModelForClass } from '@typegoose/typegoose';
 import { Types } from 'mongoose';
 
+export const LabCollection = 'labs';
+
 @modelOptions({
   options: {
-    customName: 'labs',
+    customName: LabCollection,
   },
 })
 export class LabSchema {

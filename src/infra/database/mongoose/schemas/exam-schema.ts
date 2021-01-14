@@ -1,9 +1,11 @@
 import { prop, getModelForClass, modelOptions } from '@typegoose/typegoose';
 import { Types } from 'mongoose';
 
+export const ExamCollection = 'exams';
+
 @modelOptions({
   options: {
-    customName: 'exams',
+    customName: ExamCollection,
   },
 })
 export class ExamSchema {
