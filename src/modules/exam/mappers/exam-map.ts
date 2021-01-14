@@ -1,5 +1,7 @@
+import { ResultFactory } from 'common/core';
+import { EntityStatus, UniqueEntityId } from 'common/domain';
 import { ExamSchema } from 'infra/database/mongoose/schemas';
-import { Exam } from 'modules/exam/domain';
+import { Exam, ExamName, ExamType } from 'modules/exam/domain';
 import { ExamDto } from 'modules/exam/dto';
 
 export class ExamMap {
@@ -28,5 +30,30 @@ export class ExamMap {
       status: input.status,
       type: input.type,
     };
+  }
+
+  static fromPersistToDomain(input: ExamSchema): Exam {
+    const nameOrError = ExamName.create(input.name);
+    const typeOrError = ExamType.create(input.type);
+    const statusOrError = EntityStatus.create(input.status);
+
+    const validation = ResultFactory.combine(
+      nameOrError,
+      typeOrError,
+      statusOrError,
+    );
+
+    if (validation.isFailure()) {
+      return null;
+    }
+
+    return Exam.create(
+      {
+        name: nameOrError.value,
+        type: typeOrError.value,
+        status: statusOrError.value,
+      },
+      new UniqueEntityId(input._id),
+    );
   }
 }

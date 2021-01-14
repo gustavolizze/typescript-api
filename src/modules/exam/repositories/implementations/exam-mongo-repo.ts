@@ -8,6 +8,12 @@ import { ExamRepository } from '../exam-repository';
 export class ExamMongoRepo implements ExamRepository {
   constructor(private readonly examModel: ReturnModelType<typeof ExamSchema>) {}
 
+  async update(exam: Exam): Promise<void> {
+    const { _id, ...toUpdate } = ExamMap.fromDomainToPersist(exam);
+
+    await this.examModel.findByIdAndUpdate(_id, toUpdate).lean().exec();
+  }
+
   async delete(id: string): Promise<void> {
     await this.examModel
       .findByIdAndUpdate(id, {
@@ -30,6 +36,14 @@ export class ExamMongoRepo implements ExamRepository {
       })
       .lean()
       .exec();
+  }
+
+  getById(id: string): Promise<Exam> {
+    return this.examModel
+      .findById(id)
+      .lean()
+      .exec()
+      .then(ExamMap.fromPersistToDomain);
   }
 
   async create(exam: Exam): Promise<void> {

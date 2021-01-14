@@ -11,7 +11,7 @@ let repositoryMock: IMock<LabRepository>;
 let repository: LabRepository;
 let useCase: UpdateLabUseCase;
 
-describe('RemoveLabUseCase Class', () => {
+describe('UpdateLabUseCase Class', () => {
   beforeEach(() => {
     repositoryMock = new Mock<LabRepository>()
       .setup((instance) => instance.update(It.IsAny()))

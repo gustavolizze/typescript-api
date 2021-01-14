@@ -21,6 +21,20 @@ export class Exam extends Entity<ExamProps> {
     return this.props.status.value;
   }
 
+  update(props: ExamProps) {
+    if (props.name) {
+      this.props.name = props.name;
+    }
+
+    if (props.type) {
+      this.props.type = props.type;
+    }
+
+    if (props.status) {
+      this.props.status = props.status;
+    }
+  }
+
   static create(props: ExamProps, id?: UniqueEntityId) {
     return new Exam(props, id);
   }
