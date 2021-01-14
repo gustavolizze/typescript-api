@@ -8,6 +8,21 @@ import { ExamRepository } from '../exam-repository';
 export class ExamMongoRepo implements ExamRepository {
   constructor(private readonly examModel: ReturnModelType<typeof ExamSchema>) {}
 
+  async delete(id: string): Promise<void> {
+    await this.examModel
+      .findByIdAndUpdate(id, {
+        status: EntityStatus.inactive().value,
+      })
+      .lean()
+      .exec();
+  }
+
+  existsById(id: string): Promise<boolean> {
+    return this.examModel.exists({
+      _id: id,
+    });
+  }
+
   getActiveExams(): Promise<ExamSchema[]> {
     return this.examModel
       .find({

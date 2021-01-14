@@ -3,6 +3,8 @@ import { Exam, ExamName } from 'modules/exam/domain';
 
 export interface ExamRepository {
   create(exam: Exam): Promise<void>;
+  delete(id: string): Promise<void>;
   existsByName(name: ExamName): Promise<boolean>;
+  existsById(id: string): Promise<boolean>;
   getActiveExams(): Promise<ExamSchema[]>;
 }

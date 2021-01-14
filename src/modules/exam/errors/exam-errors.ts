@@ -6,4 +6,10 @@ export namespace ExamErrors {
       super(`O exame: ${name}, já existe!`);
     }
   }
+
+  export class ExamNotFound extends AppError<string> {
+    constructor() {
+      super(`O exame informado não existe!`);
+    }
+  }
 }
