@@ -1,6 +1,15 @@
-import { prop, getModelForClass } from '@typegoose/typegoose';
+import { prop, getModelForClass, modelOptions } from '@typegoose/typegoose';
+import { Types } from 'mongoose';
 
+@modelOptions({
+  options: {
+    customName: 'exams',
+  },
+})
 export class ExamSchema {
+  @prop()
+  public _id: Types.ObjectId;
+
   @prop()
   public name: string;
 
