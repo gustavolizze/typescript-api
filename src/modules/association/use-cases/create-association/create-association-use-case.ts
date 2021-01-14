@@ -17,7 +17,7 @@ type Response = Result<
   | AssociationErrors.ExamInactiveError
   | AssociationErrors.LabInactiveError
   | AssociationErrors.AssociationAlreadyExists,
-  void
+  { id: string }
 >;
 
 export class CreateAssociationUseCase
@@ -85,6 +85,8 @@ export class CreateAssociationUseCase
 
     await this.associationRepository.create(association);
 
-    return ResultFactory.ok();
+    return ResultFactory.ok({
+      id: association.id.toString(),
+    });
   }
 }

@@ -18,7 +18,7 @@ export class CreateAssociationController extends BaseController {
     const result = await this.useCase.execute(request.body);
 
     if (result.isSuccess()) {
-      return this.noContent(reply);
+      return this.success(reply, result.value);
     }
 
     const error = result.error;

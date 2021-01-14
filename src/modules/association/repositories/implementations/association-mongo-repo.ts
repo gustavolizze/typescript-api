@@ -11,6 +11,16 @@ export class AssociationMongoRepo implements AssociationRepository {
     >,
   ) {}
 
+  async delete(id: string): Promise<void> {
+    await this.associationModel.findByIdAndDelete(id).lean().exec();
+  }
+
+  existsById(id: string): Promise<boolean> {
+    return this.associationModel.exists({
+      _id: id,
+    });
+  }
+
   exists(labId: string, examId: string): Promise<boolean> {
     return this.associationModel.exists({
       exam: examId,

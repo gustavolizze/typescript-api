@@ -26,4 +26,10 @@ export namespace AssociationErrors {
       );
     }
   }
+
+  export class AssociationNotFound extends AppError<string> {
+    constructor() {
+      super(`A associação informada não existe!`);
+    }
+  }
 }
