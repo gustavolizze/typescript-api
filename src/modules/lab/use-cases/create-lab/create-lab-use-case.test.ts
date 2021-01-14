@@ -1,6 +1,6 @@
 import { CreateLabUseCase } from './create-lab-use-case';
 import { LabRepository } from 'modules/lab/repositories';
-import { Mock, IMock, Times } from 'moq.ts';
+import { Mock, IMock, Times, It } from 'moq.ts';
 import { LabErrors } from 'modules/lab/errors';
 
 let repositoryMock: IMock<LabRepository>;
@@ -12,7 +12,7 @@ describe('CreateLabUseCase Class', () => {
     repositoryMock = new Mock<LabRepository>()
       .setup((instance) => instance.existsByName('Repetido'))
       .returns(Promise.resolve(true))
-      .setup((instance) => instance.create())
+      .setup((instance) => instance.create(It.IsAny()))
       .returns(Promise.resolve());
 
     repository = repositoryMock.object();

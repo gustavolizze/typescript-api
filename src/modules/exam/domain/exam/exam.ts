@@ -18,7 +18,7 @@ export class Exam extends Entity<ExamProps> {
   }
 
   get status() {
-    return this.props.status.value;
+    return this.props.status;
   }
 
   update(props: ExamProps) {

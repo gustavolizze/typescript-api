@@ -10,7 +10,7 @@ export class ExamMap {
       id: input.id.toString(),
       name: input.name,
       type: input.type,
-      status: input.status,
+      status: input.status.value,
     };
   }
 
@@ -18,7 +18,7 @@ export class ExamMap {
     return {
       _id: input.id.value,
       name: input.name,
-      status: input.status,
+      status: input.status.value,
       type: input.type,
     };
   }
