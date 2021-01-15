@@ -1,13 +1,14 @@
-import { UseCase } from 'common/core';
 import { Environment } from 'environment';
 import { AppError } from 'common/errors';
-import { FastifyReply, FastifyRequest } from 'fastify';
+import { FastifyReply, FastifyRequest, FastifySchema } from 'fastify';
 import { HttpStatusCode } from './http-status-code';
 
 export abstract class BaseController {
   constructor() {
     this.implementation = this.implementation.bind(this);
   }
+
+  public abstract get schema(): FastifySchema;
 
   protected abstract implementation(
     request: FastifyRequest,

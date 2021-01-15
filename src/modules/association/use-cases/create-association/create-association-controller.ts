@@ -1,14 +1,33 @@
 import { ValidationError } from 'common/errors';
-import { FastifyReply, FastifyRequest } from 'fastify';
+import { FastifyReply, FastifyRequest, FastifySchema } from 'fastify';
 import { BaseController } from 'infra/http/models';
 import { AssociationErrors } from 'modules/association/errors';
 import { ExamErrors } from 'modules/exam/errors';
 import { LabErrors } from 'modules/lab/errors';
+import { CreateAssociationDtoSchema } from './create-association-dto';
 import { CreateAssociationUseCase } from './create-association-use-case';
 
 export class CreateAssociationController extends BaseController {
   constructor(private readonly useCase: CreateAssociationUseCase) {
     super();
+  }
+
+  public get schema(): FastifySchema {
+    return {
+      summary: 'Criar uma associação',
+      description: 'Criar uma associação',
+      tags: ['Associações'],
+      body: CreateAssociationDtoSchema,
+      response: {
+        200: {
+          description: 'Associação criada',
+          type: 'object',
+          properties: {
+            id: { type: 'string' },
+          },
+        },
+      },
+    };
   }
 
   protected async implementation(

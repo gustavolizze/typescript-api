@@ -1,5 +1,5 @@
 import { ValidationError } from 'common/errors';
-import { FastifyRequest, FastifyReply } from 'fastify';
+import { FastifyRequest, FastifyReply, FastifySchema } from 'fastify';
 import { BaseController } from 'infra/http/models';
 import { AssociationErrors } from 'modules/association/errors';
 import { RemoveAssociationUseCase } from './remove-association-use-case';
@@ -7,6 +7,26 @@ import { RemoveAssociationUseCase } from './remove-association-use-case';
 export class RemoveAssociationController extends BaseController {
   constructor(private readonly useCase: RemoveAssociationUseCase) {
     super();
+  }
+
+  public get schema(): FastifySchema {
+    return {
+      summary: 'Remover uma associação',
+      description: 'Remover uma associação',
+      tags: ['Associações'],
+      params: {
+        type: 'object',
+        properties: {
+          id: { type: 'string' },
+        },
+      },
+      response: {
+        204: {
+          description: 'Associação removida',
+          type: 'null',
+        },
+      },
+    };
   }
 
   protected async implementation(

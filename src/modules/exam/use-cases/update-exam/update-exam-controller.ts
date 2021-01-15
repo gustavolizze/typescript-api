@@ -1,5 +1,5 @@
 import { ValidationError } from 'common/errors';
-import { FastifyReply, FastifyRequest } from 'fastify';
+import { FastifyReply, FastifyRequest, FastifySchema } from 'fastify';
 import { BaseController } from 'infra/http/models';
 import { ExamErrors } from 'modules/exam/errors';
 import { UpdateExamUseCase } from './update-exam-use-case';
@@ -7,6 +7,34 @@ import { UpdateExamUseCase } from './update-exam-use-case';
 export class UpdateExamController extends BaseController {
   constructor(private readonly useCase: UpdateExamUseCase) {
     super();
+  }
+
+  public get schema(): FastifySchema {
+    return {
+      summary: 'Atualizar um exame',
+      description: 'Atualizar um exame',
+      tags: ['Exames'],
+      params: {
+        type: 'object',
+        properties: {
+          id: { type: 'string' },
+        },
+      },
+      body: {
+        type: 'object',
+        properties: {
+          name: { type: 'string' },
+          type: { type: 'string' },
+          status: { type: 'string' },
+        },
+      },
+      response: {
+        204: {
+          description: 'Sucesso!',
+          type: 'null',
+        },
+      },
+    };
   }
 
   protected async implementation(

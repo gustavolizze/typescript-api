@@ -1,5 +1,5 @@
 import { ValidationError } from 'class-validator';
-import { FastifyReply, FastifyRequest } from 'fastify';
+import { FastifyReply, FastifyRequest, FastifySchema } from 'fastify';
 import { BaseController } from 'infra/http/models';
 import { LabErrors } from 'modules/lab/errors';
 import { UpdateLabUseCase } from './update-lab-use-case';
@@ -7,6 +7,36 @@ import { UpdateLabUseCase } from './update-lab-use-case';
 export class UpdateLabController extends BaseController {
   constructor(private readonly useCase: UpdateLabUseCase) {
     super();
+  }
+
+  public get schema(): FastifySchema {
+    return {
+      summary: 'Atualizar um laboratório',
+      description: 'Atualizar um laboratório',
+      tags: ['Laboratórios'],
+      params: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'string',
+          },
+        },
+      },
+      body: {
+        type: 'object',
+        properties: {
+          name: { type: 'string' },
+          address: { type: 'string' },
+          status: { type: 'string' },
+        },
+      },
+      response: {
+        201: {
+          description: 'Sucesso!',
+          type: 'null',
+        },
+      },
+    };
   }
 
   protected async implementation(

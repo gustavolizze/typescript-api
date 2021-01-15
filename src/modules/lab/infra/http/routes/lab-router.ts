@@ -10,11 +10,45 @@ import {
 const RouteName = '/lab';
 
 const labRouter: FastifyPluginAsync = async (fastify) => {
-  fastify.post(RouteName, createLabController.execute);
-  fastify.get(`${RouteName}/by-exam`, getActiveLabsByExamController.execute);
-  fastify.get(RouteName, getActiveLabsController.execute);
-  fastify.delete(`${RouteName}/:id`, removeLabController.execute);
-  fastify.put(`${RouteName}/:id`, updateLabController.execute);
+  fastify.post(
+    RouteName,
+    {
+      schema: createLabController.schema,
+    },
+    createLabController.execute,
+  );
+
+  fastify.get(
+    `${RouteName}/by-exam`,
+    {
+      schema: getActiveLabsByExamController.schema,
+    },
+    getActiveLabsByExamController.execute,
+  );
+
+  fastify.get(
+    RouteName,
+    {
+      schema: getActiveLabsController.schema,
+    },
+    getActiveLabsController.execute,
+  );
+
+  fastify.delete(
+    `${RouteName}/:id`,
+    {
+      schema: removeLabController.schema,
+    },
+    removeLabController.execute,
+  );
+
+  fastify.put(
+    `${RouteName}/:id`,
+    {
+      schema: updateLabController.schema,
+    },
+    updateLabController.execute,
+  );
 };
 
 export default labRouter;

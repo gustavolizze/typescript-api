@@ -7,8 +7,21 @@ import {
 const RouteName = '/association';
 
 const associationRouter: FastifyPluginAsync = async (fastify) => {
-  fastify.post(RouteName, createAssociationController.execute);
-  fastify.delete(`${RouteName}/:id`, removeAssociationController.execute);
+  fastify.post(
+    RouteName,
+    {
+      schema: createAssociationController.schema,
+    },
+    createAssociationController.execute,
+  );
+
+  fastify.delete(
+    `${RouteName}/:id`,
+    {
+      schema: removeAssociationController.schema,
+    },
+    removeAssociationController.execute,
+  );
 };
 
 export default associationRouter;

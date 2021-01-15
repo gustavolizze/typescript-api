@@ -12,7 +12,7 @@ export class ExamSchema {
   @prop()
   public _id: Types.ObjectId;
 
-  @prop()
+  @prop({ unique: true })
   public name: string;
 
   @prop()

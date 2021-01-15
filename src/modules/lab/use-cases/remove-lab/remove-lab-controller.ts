@@ -1,12 +1,28 @@
 import { ValidationError } from 'common/errors';
-import { FastifyReply, FastifyRequest } from 'fastify';
+import { FastifyReply, FastifyRequest, FastifySchema } from 'fastify';
 import { BaseController } from 'infra/http/models';
 import { LabErrors } from 'modules/lab/errors';
+import { RemoveLabDtoSchema } from './remove-lab-dto';
 import { RemoveLabUseCase } from './remove-lab-use-case';
 
 export class RemoveLabController extends BaseController {
   constructor(private readonly useCase: RemoveLabUseCase) {
     super();
+  }
+
+  public get schema(): FastifySchema {
+    return {
+      summary: 'Remover um laboratório',
+      description: 'Remover um laboratório',
+      tags: ['Laboratórios'],
+      params: RemoveLabDtoSchema,
+      response: {
+        204: {
+          description: 'Sucesso!',
+          type: 'null',
+        },
+      },
+    };
   }
 
   protected async implementation(

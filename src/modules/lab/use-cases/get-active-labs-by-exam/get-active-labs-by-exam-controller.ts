@@ -1,10 +1,28 @@
-import { FastifyReply, FastifyRequest } from 'fastify';
+import { FastifyReply, FastifyRequest, FastifySchema } from 'fastify';
 import { BaseController } from 'infra/http/models';
+import { LabDtoSchema } from 'modules/lab/dto';
+import { GetActiveLabsByExamDtoSchema } from './get-active-labs-by-exam-dto';
 import { GetActiveLabsByExamUseCase } from './get-active-labs-by-exam-use-case';
 
 export class GetActiveLabsByExamController extends BaseController {
   constructor(private readonly useCase: GetActiveLabsByExamUseCase) {
     super();
+  }
+
+  public get schema(): FastifySchema {
+    return {
+      summary: 'Obter os laboratórios pelo exame',
+      description: 'Obter os laboratórios pelo exame',
+      tags: ['Laboratórios'],
+      querystring: GetActiveLabsByExamDtoSchema,
+      response: {
+        200: {
+          description: 'Sucesso!',
+          type: 'array',
+          items: LabDtoSchema,
+        },
+      },
+    };
   }
 
   protected async implementation(

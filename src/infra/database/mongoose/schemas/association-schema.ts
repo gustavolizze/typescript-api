@@ -1,5 +1,12 @@
-import { prop, getModelForClass, modelOptions } from '@typegoose/typegoose';
+import {
+  prop,
+  getModelForClass,
+  modelOptions,
+  index,
+} from '@typegoose/typegoose';
 import { Types } from 'mongoose';
+import { ExamCollection } from './exam-schema';
+import { LabCollection } from './lab-schema';
 
 export const AssociationCollection = 'associations';
 
@@ -8,6 +15,7 @@ export const AssociationCollection = 'associations';
     customName: AssociationCollection,
   },
 })
+@index({ lab: 1, exam: 1 }, { unique: true })
 export class AssociationSchema {
   @prop({
     type: Types.ObjectId,
@@ -16,11 +24,13 @@ export class AssociationSchema {
 
   @prop({
     type: Types.ObjectId,
+    ref: LabCollection,
   })
   public lab: Types.ObjectId | string;
 
   @prop({
     type: Types.ObjectId,
+    ref: ExamCollection,
   })
   public exam: Types.ObjectId | string;
 }

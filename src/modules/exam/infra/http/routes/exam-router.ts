@@ -3,16 +3,43 @@ import {
   createExamController,
   getActiveExamsController,
   removeExamController,
-  updateExamUseCase,
+  updateExamController,
 } from 'modules/exam/use-cases';
 
 const RouteName = '/exam';
 
 const examRouter: FastifyPluginAsync = async (fastify) => {
-  fastify.post(RouteName, createExamController.execute);
-  fastify.get(RouteName, getActiveExamsController.execute);
-  fastify.delete(`${RouteName}/:id`, removeExamController.execute);
-  fastify.put(`${RouteName}/:id`, updateExamUseCase.execute);
+  fastify.post(
+    RouteName,
+    {
+      schema: createExamController.schema,
+    },
+    createExamController.execute,
+  );
+
+  fastify.get(
+    RouteName,
+    {
+      schema: getActiveExamsController.schema,
+    },
+    getActiveExamsController.execute,
+  );
+
+  fastify.delete(
+    `${RouteName}/:id`,
+    {
+      schema: removeExamController.schema,
+    },
+    removeExamController.execute,
+  );
+
+  fastify.put(
+    `${RouteName}/:id`,
+    {
+      schema: updateExamController.schema,
+    },
+    updateExamController.execute,
+  );
 };
 
 export default examRouter;
