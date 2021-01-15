@@ -8,9 +8,11 @@ export class GetActiveLabsByExamUseCase
   implements UseCase<GetActiveLabsByExamDto, LabDto[]> {
   constructor(private readonly labRepository: LabRepository) {}
 
-  execute(input?: GetActiveLabsByExamDto): Promise<LabDto[]> {
-    return this.labRepository
-      .findActiveLabsByExamName(input?.examName || '')
-      .then((result) => result.map(LabMap.fromPersistToDto));
+  async execute(input?: GetActiveLabsByExamDto): Promise<LabDto[]> {
+    const result = await this.labRepository.findActiveLabsByExamName(
+      input?.examName || '',
+    );
+
+    return result.map((item) => LabMap.fromPersistToDto(item));
   }
 }

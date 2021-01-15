@@ -13,13 +13,6 @@ export class GetActiveExamsController extends BaseController {
       summary: 'Obter exames ativos',
       description: 'Obter exames ativos',
       tags: ['Exames'],
-      response: {
-        200: {
-          description: 'Exame criado',
-          type: 'array',
-          items: ExamDtoSchema,
-        },
-      },
     };
   }
 

@@ -17,12 +17,6 @@ export class CreateLabController extends BaseController {
       description: 'Criar um laboratório',
       tags: ['Laboratórios'],
       body: CreateLabDtoSchema,
-      response: {
-        200: {
-          description: 'Laboratório Criado',
-          ...LabDtoSchema,
-        },
-      },
     };
   }
 

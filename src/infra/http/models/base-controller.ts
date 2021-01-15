@@ -5,6 +5,7 @@ import { HttpStatusCode } from './http-status-code';
 
 export abstract class BaseController {
   constructor() {
+    this.execute = this.execute.bind(this);
     this.implementation = this.implementation.bind(this);
   }
 

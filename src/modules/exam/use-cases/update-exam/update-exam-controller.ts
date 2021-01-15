@@ -28,12 +28,6 @@ export class UpdateExamController extends BaseController {
           status: { type: 'string' },
         },
       },
-      response: {
-        204: {
-          description: 'Sucesso!',
-          type: 'null',
-        },
-      },
     };
   }
 

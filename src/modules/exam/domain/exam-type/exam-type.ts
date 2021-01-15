@@ -33,7 +33,7 @@ export class ExamType extends ValueObject<ExamTypeProps> {
     const guard = Guard.executeValidators({
       argument: type,
       message:
-        'Você precisa informar um exame válido! (Imagem ou analise clinica)!',
+        'Você precisa informar um exame válido! ("image" ou "clinical-analysis")!',
       validators: [
         isNotEmpty,
         (input: string) =>

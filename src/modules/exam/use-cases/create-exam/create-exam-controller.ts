@@ -1,4 +1,4 @@
-import { ValidationError } from 'class-validator';
+import { ValidationError } from 'common/errors';
 import { FastifyReply, FastifyRequest, FastifySchema } from 'fastify';
 import { BaseController } from 'infra/http/models';
 import { ExamDtoSchema } from 'modules/exam/dto';
@@ -17,12 +17,6 @@ export class CreateExamController extends BaseController {
       description: 'Criar um exame',
       tags: ['Exames'],
       body: CreateExamDtoSchema,
-      response: {
-        200: {
-          description: 'Exame criado',
-          ...ExamDtoSchema,
-        },
-      },
     };
   }
 

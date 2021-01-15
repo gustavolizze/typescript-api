@@ -1,4 +1,4 @@
-import { ValidationError } from 'class-validator';
+import { ValidationError } from 'common/errors';
 import { FastifyReply, FastifyRequest, FastifySchema } from 'fastify';
 import { BaseController } from 'infra/http/models';
 import { LabErrors } from 'modules/lab/errors';
@@ -28,12 +28,6 @@ export class UpdateLabController extends BaseController {
           name: { type: 'string' },
           address: { type: 'string' },
           status: { type: 'string' },
-        },
-      },
-      response: {
-        201: {
-          description: 'Sucesso!',
-          type: 'null',
         },
       },
     };

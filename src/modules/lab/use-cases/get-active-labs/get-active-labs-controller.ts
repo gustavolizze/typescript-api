@@ -13,13 +13,6 @@ export class GetActiveLabsController extends BaseController {
       summary: 'Obter os laboratórios ativos',
       description: 'Obter os laboratórios ativos',
       tags: ['Laboratórios'],
-      response: {
-        200: {
-          description: 'Sucesso!',
-          type: 'array',
-          items: LabDtoSchema,
-        },
-      },
     };
   }
 

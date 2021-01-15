@@ -16,12 +16,6 @@ export class RemoveLabController extends BaseController {
       description: 'Remover um laboratório',
       tags: ['Laboratórios'],
       params: RemoveLabDtoSchema,
-      response: {
-        204: {
-          description: 'Sucesso!',
-          type: 'null',
-        },
-      },
     };
   }
 

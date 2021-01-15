@@ -20,12 +20,6 @@ export class RemoveAssociationController extends BaseController {
           id: { type: 'string' },
         },
       },
-      response: {
-        204: {
-          description: 'Associação removida',
-          type: 'null',
-        },
-      },
     };
   }
 

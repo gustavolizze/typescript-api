@@ -35,7 +35,8 @@ export class ExamMongoRepo implements ExamRepository {
         status: EntityStatus.active().value,
       })
       .lean()
-      .exec();
+      .exec()
+      .then((result) => (Array.isArray(result) ? result : []));
   }
 
   getById(id: string): Promise<Exam> {

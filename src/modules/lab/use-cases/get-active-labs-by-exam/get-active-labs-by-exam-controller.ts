@@ -15,13 +15,6 @@ export class GetActiveLabsByExamController extends BaseController {
       description: 'Obter os laboratórios pelo exame',
       tags: ['Laboratórios'],
       querystring: GetActiveLabsByExamDtoSchema,
-      response: {
-        200: {
-          description: 'Sucesso!',
-          type: 'array',
-          items: LabDtoSchema,
-        },
-      },
     };
   }
 
@@ -31,7 +24,9 @@ export class GetActiveLabsByExamController extends BaseController {
   ): Promise<void> {
     return this.useCase
       .execute(request.query)
-      .then((result) => this.success(reply, result))
+      .then((result) => {
+        this.success(reply, result);
+      })
       .catch((err) => this.unexpectedError(reply, err));
   }
 }

@@ -8,7 +8,7 @@ describe('ExamType Class', () => {
     expect(examType.isFailure()).toBeTrue();
     expect(examType.error instanceof ValidationError).toBeTrue();
     expect(examType.error.details).toEqual([
-      'Você precisa informar um exame válido! (Imagem ou analise clinica)!',
+      'Você precisa informar um exame válido! ("image" ou "clinical-analysis")!',
     ]);
   });
 
@@ -18,7 +18,7 @@ describe('ExamType Class', () => {
     expect(examType.isFailure()).toBeTrue();
     expect(examType.error instanceof ValidationError).toBeTrue();
     expect(examType.error.details).toEqual([
-      'Você precisa informar um exame válido! (Imagem ou analise clinica)!',
+      'Você precisa informar um exame válido! ("image" ou "clinical-analysis")!',
     ]);
   });
 

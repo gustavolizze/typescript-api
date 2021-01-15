@@ -28,7 +28,7 @@ export class LabMap {
       id: `${input._id}`,
       address: input.address,
       name: input.name,
-      status: input.status as any,
+      status: input.status,
     };
   }
 

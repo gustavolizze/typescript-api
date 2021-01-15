@@ -1,4 +1,4 @@
-import { ValidationError } from 'class-validator';
+import { ValidationError } from 'common/errors';
 import { FastifyReply, FastifyRequest, FastifySchema } from 'fastify';
 import { BaseController } from 'infra/http/models';
 import { ExamErrors } from 'modules/exam/errors';
@@ -18,12 +18,6 @@ export class RemoveExamController extends BaseController {
         type: 'object',
         properties: {
           id: { type: 'string' },
-        },
-      },
-      response: {
-        204: {
-          description: 'Sucesso!',
-          type: 'null',
         },
       },
     };

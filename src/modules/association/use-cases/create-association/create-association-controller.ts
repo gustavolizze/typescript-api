@@ -18,15 +18,6 @@ export class CreateAssociationController extends BaseController {
       description: 'Criar uma associação',
       tags: ['Associações'],
       body: CreateAssociationDtoSchema,
-      response: {
-        200: {
-          description: 'Associação criada',
-          type: 'object',
-          properties: {
-            id: { type: 'string' },
-          },
-        },
-      },
     };
   }
 

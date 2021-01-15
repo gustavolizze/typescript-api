@@ -34,9 +34,14 @@ export class LabMongoRepo implements LabRepository {
         foreignField: '_id',
         as: 'labObj',
       })
+      .unwind('labObj')
       .match({ 'examObj.name': new RegExp(examName, 'i') })
       .exec()
-      .then((result: any) => result.labObj as LabSchema[]);
+      .then((result: any) =>
+        Array.isArray(result)
+          ? result.map((item) => item.labObj as LabSchema)
+          : [],
+      );
   }
 
   findById(id: string): Promise<Lab> {
